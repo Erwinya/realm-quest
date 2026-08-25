@@ -1,13 +1,13 @@
 #!/bin/bash
+set -euo pipefail
 
-# Temizle
 rm -rf bin
 mkdir -p bin
 
-# Derle
-echo "Derleniyor..."
-javac -d bin src/com/halukkilincer/adventure/launcher/Main.java
+echo "Compiling..."
+find src -name "*.java" ! -name "*Test.java" > sources.txt
+javac -d bin @sources.txt
+rm sources.txt
 
-# Çalıştır
-echo "Çalıştırılıyor..."
-java -cp bin com.halukkilincer.adventure.launcher.Main 
+echo "Running..."
+java -cp bin com.halukkilincer.adventure.launcher.Main
