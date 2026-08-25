@@ -12,108 +12,63 @@ This project is a text-based adventure game developed in Java. Players can choos
 - Rare item collection system
 - Health regeneration system
 - Game save/load system
-- Detailed event logging
-- SOLID principles implementation
-- Clean Code practices
 
 ## Requirements
 
 - Java 17 or higher
-- Maven 3.6 or higher
 
-## Installation
+## Build and run
 
 1. Clone the project:
-```bash
-git clone https://github.com/erwinya/Simple-Text-Based-Adventure-Engine.git
-```
 
-2. Navigate to the project directory:
 ```bash
+git clone https://github.com/Erwinya/Simple-Text-Based-Adventure-Engine.git
 cd Simple-Text-Based-Adventure-Engine
 ```
 
-3. Build the project with Maven:
+2. Compile and run (Linux/macOS/Git Bash):
+
 ```bash
-mvn clean package
+chmod +x build.sh
+./build.sh
 ```
 
-4. Run the game:
+Or manually:
+
 ```bash
-java -jar target/text-adventure-1.0-SNAPSHOT.jar
+mkdir -p bin
+find src -name "*.java" ! -name "*Test.java" > sources.txt
+javac -d bin @sources.txt
+java -cp bin com.halukkilincer.adventure.launcher.Main
 ```
 
-## Development
+On Windows (PowerShell), from the project root:
 
-### Project Structure
-```
-src/
-├── main/
-│   ├── java/
-│   │   └── com/halukkilincer/adventure/
-│   │       ├── characters/    # Character classes
-│   │       ├── combat/        # Combat system
-│   │       ├── engine/        # Game engine
-│   │       ├── interfaces/    # Game interfaces
-│   │       ├── items/         # Item system
-│   │       ├── launcher/      # Game entry point
-│   │       ├── map/          # Game locations
-│   │       ├── ui/           # User interface
-│   │       └── utils/        # Utility classes
-│   └── resources/
-│       └── logback.xml       # Logging configuration
-├── test/
-│   └── java/                # Unit tests
-└── pom.xml                  # Maven configuration
+```powershell
+New-Item -ItemType Directory -Force bin | Out-Null
+Get-ChildItem -Recurse src -Filter *.java | Where-Object { $_.Name -notlike '*Test.java' } | ForEach-Object { $_.FullName } | Set-Content sources.txt
+javac -d bin @sources.txt
+java -cp bin com.halukkilincer.adventure.launcher.Main
 ```
 
-### Design Patterns Used
-- Strategy Pattern (Combat System)
-- Factory Pattern (Character Creation)
-- Singleton Pattern (Game Manager)
-- Observer Pattern (Event System)
+## Project structure
 
-### SOLID Principles Implementation
-- Single Responsibility Principle: Each class has one specific responsibility
-- Open/Closed Principle: New character types and combat strategies can be added without modifying existing code
-- Liskov Substitution Principle: Character subtypes can be used in place of AbstractCharacter
-- Interface Segregation: Specific interfaces (ICombat, ILootable) for different behaviors
-- Dependency Inversion: High-level modules depend on abstractions
+```text
+src/com/halukkilincer/adventure/
+├── characters/    # Character classes
+├── items/         # Item system
+├── launcher/      # Game entry point (Main)
+├── map/           # Game locations
+└── utils/         # Location helpers and game utilities
+```
 
-## Game Controls
+## Game controls
 
 - Use numbers 1-4 to navigate menus
 - Use S, A, B, H keys for character selection
 - During combat:
   - Press V to attack
   - Press K to run away
-
-## Game Tips
-
-1. You can regenerate your health at the Safe House when starting the game
-2. Buy weapons and armor from the Ghua Market
-3. Collect the Forest Scroll from the Shadow Forest
-4. Obtain the Ancient Stone from the Dark Caverns
-5. Finally, fight the Void Lord at the Void Realm Portal
-
-## Contributing
-
-1. Fork this repository
-2. Create a new branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push your branch (`git push origin feature/amazing-feature`)
-5. Create a Pull Request
-
-## Testing
-
-Run the tests using Maven:
-```bash
-mvn test
-```
-
-## Logging
-
-Game events are logged to both console and `game.log` file. The logging level can be configured in `src/main/resources/logback.xml`.
 
 ## License
 
