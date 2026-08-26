@@ -11,10 +11,10 @@ public class Main {
         try (Game game = new Game()) {
             game.start();
         } catch (InterruptedException e) {
-            LOGGER.log(Level.SEVERE, "Oyun kesintiye uğradı", e);
+            LOGGER.log(Level.SEVERE, "Realm Quest was interrupted", e);
             Thread.currentThread().interrupt();
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Beklenmeyen bir hata oluştu", e);
+            LOGGER.log(Level.SEVERE, "An unexpected error stopped Realm Quest", e);
         }
     }
 }

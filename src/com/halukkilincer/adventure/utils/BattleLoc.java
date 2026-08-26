@@ -23,18 +23,18 @@ public abstract class BattleLoc extends Location {
 	@Override
 	public boolean getLocation() throws InterruptedException {
 		int enemyCount = generateEnemyCount();
-		System.out.printf("\n%d adet %s burada!\n", enemyCount, enemy.getName());
-		System.out.print("\n<S>avaş veya <K>aç: ");
+		System.out.printf("\n%d %s unit(s) detected!\n", enemyCount, enemy.getName());
+		System.out.print("\n<F>ight or <R>un: ");
 		String selectCase = scanner.nextLine().toUpperCase();
 		
-		if (selectCase.equals("S") && combat(enemyCount)) {
-			System.out.println("\n" + this.getName() + " bölgesindeki tüm düşmanları yendin!");
+		if (selectCase.equals("F") && combat(enemyCount)) {
+			System.out.println("\nYou cleared every hostile in " + this.getName() + "!");
 			earnReward();
 			return true;
 		}
 		
 		if (player.getHealth() <= 0) {
-			System.out.println("\n💀 Öldün!");
+			System.out.println("\n💀 Your signal went dark.");
 			return false;
 		}
 		
@@ -48,29 +48,29 @@ public abstract class BattleLoc extends Location {
 			enemyStats();
 			
 			while (player.getHealth() > 0 && enemy.getHealth() > 0) {
-				System.out.print("\n<V>ur veya <K>aç: ");
+				System.out.print("\n<A>ttack or <R>un: ");
 				String selectCombat = scanner.nextLine().toUpperCase();
 				
-				if (selectCombat.equals("V")) {
-					System.out.println("\nSen vurdun!");
+				if (selectCombat.equals("A")) {
+					System.out.println("\nYou strike!");
 					enemy.takeDamage(player.attack());
 					Thread.sleep(1000);
 					
 					if (enemy.getHealth() > 0) {
-						System.out.println("\nCanavar sana vurdu!");
+						System.out.println("\n" + enemy.getName() + " counterattacks!");
 						player.takeDamage(enemy.attack());
 						Thread.sleep(1000);
 					}
 				} else {
-					System.out.println("\n🏃 Savaştan kaçtın!");
+					System.out.println("\n🏃 You escaped the fight.");
 					return false;
 				}
 			}
 			
 			if (enemy.getHealth() <= 0 && player.getHealth() > 0) {
-				System.out.println("\n🎯 Düşmanı yendin!");
+				System.out.println("\n🎯 Hostile neutralized!");
 				player.getInventory().setMoney(player.getInventory().getMoney() + enemy.getGold());
-				System.out.println("💰 " + enemy.getGold() + " altın kazandın!");
+				System.out.println("💳 You earned " + enemy.getGold() + " credits.");
 			} else {
 				return false;
 			}
@@ -79,31 +79,31 @@ public abstract class BattleLoc extends Location {
 	}
 
 	protected void earnReward() {
-		if (reward.equals("Orman Parşömeni")) {
+		if (reward.equals("Data Crystal")) {
 			player.getInventory().setForestScroll(true);
-			player.getInventory().addRareItem("Orman Parşömeni");
-		} else if (reward.equals("Kadim Taş")) {
+			player.getInventory().addRareItem("Data Crystal");
+		} else if (reward.equals("Access Key")) {
 			player.getInventory().setAncientStone(true);
-			player.getInventory().addRareItem("Kadim Taş");
-		} else if (reward.equals("Void Kristali")) {
+			player.getInventory().addRareItem("Access Key");
+		} else if (reward.equals("Core Cipher")) {
 			player.getInventory().setDungeonKey(true);
-			player.getInventory().addRareItem("Void Kristali");
+			player.getInventory().addRareItem("Core Cipher");
 		}
 	}
 
 	protected void playerStats() {
-		System.out.println("\n══════════ Oyuncu Değerleri ══════════");
-		System.out.println("❤️ Can: " + player.getHealth());
-		System.out.println("🗡️ Hasar: " + player.getDamage());
-		System.out.println("🛡️ Zırh: " + player.getDefense());
-		System.out.println("💰 Para: " + player.getInventory().getMoney());
+		System.out.println("\n══════════ OPERATIVE STATUS ══════════");
+		System.out.println("❤️ Health: " + player.getHealth());
+		System.out.println("🗡️ Attack: " + player.getDamage());
+		System.out.println("🛡️ Defense: " + player.getDefense());
+		System.out.println("💳 Credits: " + player.getInventory().getMoney());
 	}
 
 	protected void enemyStats() {
-		System.out.println("\n══════════ " + enemy.getName() + " Değerleri ══════════");
-		System.out.println("❤️ Can: " + enemy.getHealth());
-		System.out.println("⚔️ Hasar: " + enemy.getDamage());
-		System.out.println("🏆 Ödül: " + enemy.getGold() + " Altın");
+		System.out.println("\n══════════ " + enemy.getName() + " STATUS ══════════");
+		System.out.println("❤️ Health: " + enemy.getHealth());
+		System.out.println("⚔️ Attack: " + enemy.getDamage());
+		System.out.println("💳 Bounty: " + enemy.getGold() + " credits");
 	}
 
 	protected int generateEnemyCount() {

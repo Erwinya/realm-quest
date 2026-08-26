@@ -11,21 +11,20 @@ public class Healer extends AbstractCharacter {
 
     @Override
     public String getCharacterType() {
-        return "Şifacı";
+        return "Medic";
     }
 
     @Override
     public String getDescription() {
         return """
                ╔═══════════════════════════════════════════════════════════╗
-               ║              💚  ŞİFACI SEÇİLDİ  💚                     ║
-               ║ Şifacı müttefiklerinin son umudu olmuştu.               ║
-               ║ Şifalı büyüleriyle yaraları sarıyor,                    ║
-               ║ lanetleri yok ediyordu.                                 ║
+               ║                    💚 MEDIC SELECTED 💚                  ║
+               ║ Trauma implants and reinforced field gear keep you      ║
+               ║ standing through the longest corporate firefights.      ║
                ╠══════════════════════════════════════════════════════════╝
-               ║ 🗡️  Saldırı Gücü : %d                                    ║
-               ║ ❤️  Can Değeri   : %d                                   ║
-               ║ 🛡️  Savunma      : %d                                    ║
+               ║ 🗡️  Attack  : %d                                        ║
+               ║ ❤️  Health  : %d                                        ║
+               ║ 🛡️  Defense : %d                                        ║
                ╚══════════════════════════════════════════════════════════╝
                """.formatted(damage, health, defense);
     }

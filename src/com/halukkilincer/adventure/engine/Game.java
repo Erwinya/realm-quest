@@ -27,8 +27,8 @@ public class Game implements AutoCloseable {
 	private void initializeGame() throws InterruptedException {
 		// Load saved game if exists
 		if (GameSaveManager.saveExists()) {
-			System.out.println("\nKaydedilmiş oyun bulundu. Yüklemek ister misiniz? (E/H)");
-			if (scanner.nextLine().equalsIgnoreCase("E")) {
+			System.out.println("\nA saved run was found. Load it? (Y/N)");
+			if (scanner.nextLine().equalsIgnoreCase("Y")) {
 				loadGame();
 				return;
 			}
@@ -49,7 +49,7 @@ public class Game implements AutoCloseable {
 				return;
 			}
 			default -> {
-				System.out.println("Geçersiz karakter seçimi! Oyun kapatılıyor...");
+				System.out.println("Invalid role selection. Closing Realm Quest...");
 				isRunning = false;
 				return;
 			}
@@ -61,25 +61,20 @@ public class Game implements AutoCloseable {
 	}
 
 	private void showStory() {
-		System.out.println("Bir zamanlar Aetheria adlı kadim topraklarda, dört kahraman, "
-				+ "dünyanın kaderini değiştirecek bir yolculuğa çıkmaya ant içmişti.\r\n" +
-				"\t Savaşçı (HP:100 Def:15 Attack:25)\n"
-				+ "Demir zırhı ve devasa baltasıyla, düşman ordularını tek başına devirebilecek kadar kudretliydi.\n"
-				+ "Onun gücü, savaş meydanında yankılanan öfkeli kükreyişinde saklıydı.\n"
-				+ "\t Suikastçı (HP:80 Def:10 Attack:35)\n"
-				+ "Gölgelerin ustasıydı. Hızlı ve sessiz hareketleriyle düşmanlarını farkına varmadan saf dışı bırakırdı.\n "
-				+ "Dagger'larının soğuk çeliği, bir anlık tereddütü bile affetmezdi.\n"
-				+ "\t Büyücü (HP:60 Def:5 Attack:45)\n"
-				+ "Kadim büyülerin sırlarını keşfetmişti. Ateş fırtınaları yaratabilir, düşmanlarını dondurabilir ya da zamanı yavaşlatabilirdi.\n "
-				+ "Onun gücü, bilgelik ve sezgiyle besleniyordu.\n" 
-				+ "\t Şifacı (HP:120 Def:20 Attack:15)\n"
-				+ "Kutsal ışığın savaşçısıydı. Yaralıları iyileştirir, lanetleri bozar ve müttefiklerini korurdu.\n "
-				+ "Ona dokunan her varlık, içindeki iyiliğin sıcaklığını hissederdi.\r\n"
-				+ "Bir gün, Void Lord adlı karanlık bir varlık Aetheria'yı yok etmeye ant içti. Kutsal Ebedi Kristal, "
-				+ "onun kötülüğünü durdurabilecek tek güçtü.\n "
-				+ "Dört kahraman, bu kadim kristali korumak ve Void Lord'u sonsuz karanlığa mühürlemek için güçlerini birleştirdi.\r\n"
-				+ "Ancak onların zaferi sadece kılıçlar ve büyülerle değil, birliktelik ve sadakatle mümkün olacaktı…\r\n"
-				+ "Şimdi, senin hikayen nasıl devam edecek? 🚀\r\n");
+		System.out.println("""
+
+				Neo-Circuit never sleeps. Its towers burn electric blue above streets
+				owned by the Helix Corporation and watched by tireless security drones.
+
+				Deep inside the Corp Vault, Helix keeps the Core Cipher: a master key
+				capable of breaking the systems that hold the megacity under corporate rule.
+
+				Your contract is simple and nearly impossible. Cross the Data District,
+				steal a Data Crystal, recover an Access Key in the Undercity Tunnels,
+				breach the vault, defeat the Overseer, and escape with the Core Cipher.
+
+				Choose your role. Tonight, Neo-Circuit changes hands.
+				""");
 	}
 
 	private void gameLoop() throws InterruptedException {
@@ -88,26 +83,26 @@ public class Game implements AutoCloseable {
 			Location location = null;
 
 			switch (choice) {
-				case "1" -> location = new SafeHouse(player);
-				case "2" -> location = new ToolStore(player);
-				case "3" -> location = new ShadowForest(player);
-				case "4" -> location = new DarkCaverns(player);
-				case "5" -> location = new VoidRealmPortal(player);
+				case "1" -> location = new Safehouse(player);
+				case "2" -> location = new BlackMarket(player);
+				case "3" -> location = new DataDistrict(player);
+				case "4" -> location = new UndercityTunnels(player);
+				case "5" -> location = new CorpVault(player);
 				case "6" -> saveGame();
 				case "q" -> {
-					System.out.println("\n Oyundan çıkış yapılıyor...");
+					System.out.println("\nDisconnecting from Neo-Circuit...");
 					isRunning = false;
 					return;
 				}
 				default -> {
-					System.out.println("\n❌ Geçersiz seçim!");
+					System.out.println("\n❌ Invalid selection!");
 					continue;
 				}
 			}
 
 			if (location != null) {
 				if (!location.getLocation()) {
-					System.out.println("\n💀 Oyun Bitti!");
+					System.out.println("\n💀 Run terminated. Game over.");
 					isRunning = false;
 					return;
 				}
@@ -118,19 +113,19 @@ public class Game implements AutoCloseable {
 	private void saveGame() {
 		try {
 			GameSaveManager.saveGame(player);
-			System.out.println("\n✨ Oyun başarıyla kaydedildi!");
+			System.out.println("\n✨ Run saved successfully!");
 		} catch (Exception e) {
-			System.out.println("\n❌ Oyun kaydedilemedi: " + e.getMessage());
+			System.out.println("\n❌ Could not save the run: " + e.getMessage());
 			GameLogger.logError("Failed to save game", e);
 		}
 	}
 
 	private void loadGame() {
 		try {
-			GameSaveManager.loadGame(player);
-			System.out.println("\n✨ Oyun başarıyla yüklendi!");
+			player = GameSaveManager.loadGame();
+			System.out.println("\n✨ Run loaded successfully!");
 		} catch (Exception e) {
-			System.out.println("\n❌ Oyun yüklenemedi: " + e.getMessage());
+			System.out.println("\n❌ Could not load the run: " + e.getMessage());
 			GameLogger.logError("Failed to load game", e);
 			isRunning = false;
 		}

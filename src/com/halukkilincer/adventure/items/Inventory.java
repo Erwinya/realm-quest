@@ -61,12 +61,14 @@ public class Inventory {
 	public void addRareItem(String item) {
 		if (item != null && !rareItems.contains(item)) {
 			rareItems.add(item);
-			System.out.println("\nNADİR EŞYA BULDUN: " + item + "!");
+			System.out.println("\nMISSION ITEM ACQUIRED: " + item + "!");
 			
-			if (item.equals("Kadim Taş")) {
-				System.out.println("Bu antik taş, eski bir medeniyetin sırlarını barındırıyor...");
-			} else if (item.equals("Orman Parşömeni")) {
-				System.out.println("Bu parşömende kadim ormanların gizli bilgelikleri yazılı...");
+			if (item.equals("Access Key")) {
+				System.out.println("Its encrypted signature matches the Corp Vault security grid.");
+			} else if (item.equals("Data Crystal")) {
+				System.out.println("The crystal contains the exploit needed to breach Helix systems.");
+			} else if (item.equals("Core Cipher")) {
+				System.out.println("Neo-Circuit's most powerful corporate secret is now yours.");
 			}
 		}
 	}

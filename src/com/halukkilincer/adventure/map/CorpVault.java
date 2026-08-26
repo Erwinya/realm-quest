@@ -1,63 +1,62 @@
 package com.halukkilincer.adventure.map;
 
 import com.halukkilincer.adventure.characters.AbstractCharacter;
-import com.halukkilincer.adventure.characters.Enemy;
+import com.halukkilincer.adventure.characters.VoidLord;
 import com.halukkilincer.adventure.utils.BattleLoc;
 
-public class VoidRealmPortal extends BattleLoc {
-    private static final Enemy VOID_LORD = new Enemy("Void Lord", 25, 250, 100);
-    private boolean hasWon = false;
-    
-    public VoidRealmPortal(AbstractCharacter player) {
-        super(player, "Boşluk Diyarı Kapısı", "🌀", VOID_LORD, "Void Kristali", 1);
+public class CorpVault extends BattleLoc {
+    private static final VoidLord OVERSEER = new VoidLord();
+
+    public CorpVault(AbstractCharacter player) {
+        super(player, "Corp Vault", "🔐", OVERSEER, "Core Cipher", 1);
     }
 
     @Override
     public boolean getLocation() throws InterruptedException {
         if (!player.getInventory().isForestScroll() || !player.getInventory().isAncientStone()) {
             System.out.println("""
-                    
+
                     ╔══════════════════════════════════════════════════════════╗
-                    ║              ⚠️  ERİŞİM ENGELLENDİ  ⚠️                   ║
+                    ║                    ⚠ ACCESS DENIED ⚠                    ║
                     ╠══════════════════════════════════════════════════════════╣
-                    ║ Boşluk Diyarı'nın kapısına ulaştın, ancak kapı mühürlü! ║
-                    ║ Önce diğer bölgelerdeki görevleri tamamlamalısın:       ║
-                    ║ • Orman Parşömeni                                        ║
-                    ║ • Kadim Taş                                              ║
+                    ║ The Corp Vault rejected your breach attempt.            ║
+                    ║ Acquire both infiltration assets first:                 ║
+                    ║ • Data Crystal                                           ║
+                    ║ • Access Key                                             ║
                     ╚══════════════════════════════════════════════════════════╝
                     """);
             return true;
         }
-        
+
         System.out.println("""
-                
+
                 ╔══════════════════════════════════════════════════════════╗
-                ║                BOŞLUK DİYARI KAPISI                      ║
+                ║                       CORP VAULT                         ║
                 ╠══════════════════════════════════════════════════════════╣
-                ║ Kapıdan sızan karanlık enerji dalgaları etrafı sarıyor. ║
-                ║ İçeride seni Void Lord bekliyor...                       ║
-                ║ Aetheria'nın kaderi senin ellerinde!                     ║
+                ║ The breach tools burn through the final security gate. ║
+                ║ The Overseer activates between you and the Core Cipher.║
+                ║ Finish the heist.                                      ║
                 ╚══════════════════════════════════════════════════════════╝
                 """);
-        
+
         Thread.sleep(2000);
         boolean battleResult = super.getLocation();
-        
+
         if (battleResult && enemy.getHealth() <= 0) {
             System.out.println("""
-                    
+
                     ╔══════════════════════════════════════════════════════════╗
-                    ║                    ✨ ZAFER! ✨                          ║
+                    ║                    ✨ HEIST COMPLETE ✨                  ║
                     ╠══════════════════════════════════════════════════════════╣
-                    ║ TEBRİKLER! VOID LORD'U YENDİN!                          ║
-                    ║ Aetheria kurtuldu! Kadim topraklar huzura kavuştu.      ║
-                    ║ Senin kahramanlığın nesiller boyu anlatılacak.          ║
+                    ║ The Overseer is down. You seize the Core Cipher and     ║
+                    ║ vanish into Neo-Circuit before Helix seals the district.║
+                    ║ Tonight, the megacity gets a chance to fight back.      ║
                     ╚══════════════════════════════════════════════════════════╝
                     """);
             Thread.sleep(5000);
             System.exit(0);
         }
-        
+
         return true;
     }
-} 
+}

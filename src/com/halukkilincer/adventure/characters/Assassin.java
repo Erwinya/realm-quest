@@ -11,20 +11,20 @@ public class Assassin extends AbstractCharacter {
 
     @Override
     public String getCharacterType() {
-        return "Suikastçı";
+        return "Ghost";
     }
 
     @Override
     public String getDescription() {
         return """
                ╔═══════════════════════════════════════════════════════════╗
-               ║              🗡️  SUİKASTÇI SEÇİLDİ  🗡️                     ║
-               ║ Suikastçı sessizliği bir silah gibi kullanıyordu.        ║
-               ║ Bir anlık tereddüt bile düşmanına ölüm getirebilirdi.    ║
+               ║                   🗡️ GHOST SELECTED 🗡️                   ║
+               ║ Optical camouflage and silent blades let you cross      ║
+               ║ guarded sectors before anyone sees the breach.          ║
                ╠══════════════════════════════════════════════════════════╝
-               ║ 🗡️  Saldırı Gücü : %d                                     ║
-               ║ ❤️  Can Değeri   : %d                                     ║
-               ║ 🛡️  Savunma      : %d                                      ║
+               ║ 🗡️  Attack  : %d                                        ║
+               ║ ❤️  Health  : %d                                        ║
+               ║ 🛡️  Defense : %d                                        ║
                ╚══════════════════════════════════════════════════════════╝
                """.formatted(damage, health, defense);
     }

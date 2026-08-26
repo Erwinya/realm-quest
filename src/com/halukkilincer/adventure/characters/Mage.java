@@ -11,21 +11,20 @@ public class Mage extends AbstractCharacter {
 
     @Override
     public String getCharacterType() {
-        return "Büyücü";
+        return "Netrunner";
     }
 
     @Override
     public String getDescription() {
         return """
                ╔═══════════════════════════════════════════════════════════╗
-               ║              🔮  BÜYÜCÜ SEÇİLDİ  🔮                      ║
-               ║ Büyücü kadim rünleri fısıldayarak ellerinde              ║
-               ║ alevler dans ettiriyordu. Gökyüzünü yaracak bir          ║
-               ║ güçle, savaşın kaderini değiştirebilirdi.                ║
+               ║                 💻 NETRUNNER SELECTED 💻                 ║
+               ║ Your neural deck turns cameras, drones, and corporate   ║
+               ║ defenses into weapons before they can lock on.          ║
                ╠══════════════════════════════════════════════════════════╝
-               ║ 🗡️  Saldırı Gücü : %d                                     ║
-               ║ ❤️  Can Değeri   : %d                                     ║
-               ║ 🛡️  Savunma      : %d                                      ║
+               ║ 🗡️  Attack  : %d                                        ║
+               ║ ❤️  Health  : %d                                        ║
+               ║ 🛡️  Defense : %d                                        ║
                ╚══════════════════════════════════════════════════════════╝
                """.formatted(damage, health, defense);
     }

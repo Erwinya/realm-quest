@@ -14,64 +14,58 @@ public class Player {
 		switch (this.getCharName().toLowerCase()) {
 		case "s" -> {
 			setStats(25, 100, 15);
-			setCharName("Savaşçı");
+			setCharName("Enforcer");
 			System.out.println("\n══════════════════════════════════════════════════════════╗");
-			System.out.println("║              ⚔️  SAVAŞÇI SEÇİLDİ  ⚔️                        ║");
-			System.out.println("║ Savaşçı baltasını sıkıca kavradı. Gücü, sadece            ║");
-			System.out.println("║ kaslarında değil, yüreğindeki sarsılmaz inançtaydı.       ║");
+			System.out.println("║                  ⚔️ ENFORCER SELECTED ⚔️                 ║");
+			System.out.println("║ Heavy armor makes you the crew's front-line operative.   ║");
 			System.out.println("╠═══════════════════════════════════════════════════════════╝");
-			System.out.println(  "║ 🗡️  Saldırı Gücü : " + this.damage +"                                     ║");
-			System.out.println(  "║ ❤️  Can Değeri   : " + this.health +"                                    ║");
-			System.out.println(  "║ 🛡️  Savunma      : " + this.defense+"                                     ║");
+			System.out.println(  "║ 🗡️  Attack  : " + this.damage +"                                          ║");
+			System.out.println(  "║ ❤️  Health  : " + this.health +"                                         ║");
+			System.out.println(  "║ 🛡️  Defense : " + this.defense+"                                          ║");
 			System.out.println("╚══════════════════════════════════════════════════════════╝");
 		}
 		case "a" -> {
 			setStats(35, 80, 8);
-			setCharName("Suikastçı");
+			setCharName("Ghost");
 			System.out.println("\n═══════════════════════════════════════════════════════════╗");
-			System.out.println("║              🗡️  SUİKASTÇI SEÇİLDİ  🗡️                     ║");
-			System.out.println("║ Suikastçı sessizliği bir silah gibi kullanıyordu.        ║");
-			System.out.println("║ Bir anlık tereddüt bile düşmanına ölüm getirebilirdi.    ║");
+			System.out.println("║                    🗡️ GHOST SELECTED 🗡️                 ║");
+			System.out.println("║ Stealth systems make silence your sharpest weapon.       ║");
 			System.out.println("╠══════════════════════════════════════════════════════════╝");
-			System.out.println(  "║ 🗡️  Saldırı Gücü : " + this.damage +"                                     ║");
-			System.out.println(  "║ ❤️  Can Değeri   : " + this.health +"                                     ║");
-			System.out.println(  "║ 🛡️  Savunma      : " + this.defense+"                                      ║");
+			System.out.println(  "║ 🗡️  Attack  : " + this.damage +"                                          ║");
+			System.out.println(  "║ ❤️  Health  : " + this.health +"                                          ║");
+			System.out.println(  "║ 🛡️  Defense : " + this.defense+"                                           ║");
 			System.out.println("╚══════════════════════════════════════════════════════════╝");
 		}
 		case "b" -> {
 			setStats(40, 65, 5);
-			setCharName("Büyücü");
+			setCharName("Netrunner");
 			System.out.println("\n═══════════════════════════════════════════════════════════╗");
-			System.out.println("║              🔮  BÜYÜCÜ SEÇİLDİ  🔮                       ║");
-			System.out.println("║ Büyücü kadim rünleri fısıldayarak ellerinde               ║");
-			System.out.println("║ alevler dans ettiriyordu. Gökyüzünü yaracak bir           ║");
-			System.out.println("║ güçle, savaşın kaderini değiştirebilirdi.                 ║");
+			System.out.println("║                  💻 NETRUNNER SELECTED 💻                ║");
+			System.out.println("║ Your neural deck turns hostile systems into weapons.     ║");
 			System.out.println("╠═══════════════════════════════════════════════════════════╝");
-			System.out.println(  "║ 🗡️  Saldırı Gücü : " + this.damage +"                                     ║");
-			System.out.println(  "║ ❤️  Can Değeri   : " + this.health +"                                     ║");
-			System.out.println(  "║ 🛡️  Savunma      : " + this.defense+"                                      ║");
+			System.out.println(  "║ 🗡️  Attack  : " + this.damage +"                                          ║");
+			System.out.println(  "║ ❤️  Health  : " + this.health +"                                          ║");
+			System.out.println(  "║ 🛡️  Defense : " + this.defense+"                                           ║");
 			System.out.println("╚══════════════════════════════════════════════════════════╝");
 		}
 		case "h" -> {
 			setStats(20, 120, 20);
-			setCharName("Şifacı");
+			setCharName("Medic");
 			System.out.println("\n══════════════════════════════════════════════════════════╗");
-			System.out.println("║              💚  ŞİFACI SEÇİLDİ  💚                     ║");
-			System.out.println("║ Şifacı müttefiklerinin son umudu olmuştu.               ║");
-			System.out.println("║ Şifalı büyüleriyle yaraları sarıyor,                    ║");
-			System.out.println("║ lanetleri yok ediyordu.                                 ║");
+			System.out.println("║                    💚 MEDIC SELECTED 💚                 ║");
+			System.out.println("║ Trauma implants keep you alive under heavy fire.       ║");
 			System.out.println("╠═════════════════════════════════════════════════════════╝");
-			System.out.println(  "║ 🗡️  Saldırı Gücü : " + this.damage +"                                    ║");
-			System.out.println(  "║ ❤️  Can Değeri   : " + this.health +"                                   ║");
-			System.out.println(  "║ 🛡️  Savunma      : " + this.defense+"                                    ║");
+			System.out.println(  "║ 🗡️  Attack  : " + this.damage +"                                         ║");
+			System.out.println(  "║ ❤️  Health  : " + this.health +"                                         ║");
+			System.out.println(  "║ 🛡️  Defense : " + this.defense+"                                          ║");
 			System.out.println("╚═════════════════════════════════════════════════════════╝");
 		}
 		case "q" -> {
-			System.out.println("\n👋 Oyundan çıkış yapılıyor...");
+			System.out.println("\n👋 Disconnecting from Neo-Circuit...");
 			Thread.sleep(1500);
 			System.exit(0);
 		}
-		default -> System.out.println("❌ Geçersiz karakter seçimi! Lütfen S, A, B, H veya Q (Çıkış) harflerinden birini seçin.");
+		default -> System.out.println("❌ Invalid role. Choose S, A, B, H, or Q to disconnect.");
 		}
 		Thread.sleep(3000);
 	}

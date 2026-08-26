@@ -9,44 +9,39 @@ public class GameUI {
         System.out.println("""
                 
                 ╔══════════════════════════════════════════════════════════╗
-                ║                    ANA MENÜ                              ║
+                ║                 REALM QUEST // RUN MAP                   ║
                 ╚══════════════════════════════════════════════════════════╝
                 
-                Gecenin derin sessizliği, kadim topraklarda yankılanıyor.
-                Fırtına yaklaşırken, savaşın gölgesi giderek büyüyor.
-                Ancak kaderin yazılacağı bu anda, seçim senin ellerinde…
+                Neon rain cuts through Neo-Circuit. Helix patrols are moving.
+                Secure the breach tools, enter the Corp Vault, and get out alive.
 
                 ╔════════════════════════════════════════════════════════╗
-                ║ 1. 🏠 GÜVENLİ EV                                       ║
+                ║ 1. 🏠 SAFEHOUSE                                        ║
                 ╠════════════════════════════════════════════════════════╣
-                ║   Dinlen ve yaralarını iyileştir                       ║
-                ║   Evin sıcaklığında güç topla                          ║
+                ║   Patch wounds and restore health                      ║
                 ╠════════════════════════════════════════════════════════╣
-                ║ 2. 🛒 GHUA PAZARI                                      ║
+                ║ 2. 🛒 BLACK MARKET                                     ║
                 ╠════════════════════════════════════════════════════════╣
-                ║   Silah ve zırh satın al                               ║
-                ║   Efsanevi ekipmanları keşfet                          ║
+                ║   Buy weapons and protective augments                  ║
                 ╠════════════════════════════════════════════════════════╣
-                ║ 3. 🌲 GÖLGELER ORMANI                                  ║
+                ║ 3. 🌐 DATA DISTRICT                                    ║
                 ╠════════════════════════════════════════════════════════╣
-                ║   Orman Parşömenini bul                                ║
-                ║   Void Lord'un minyonlarıyla savaş                     ║
+                ║   Recover the Data Crystal from Street Drones          ║
                 ╠════════════════════════════════════════════════════════╣
-                ║ 4. 🏔️ KARANLIK MAĞARALAR                              ║
+                ║ 4. 🚇 UNDERCITY TUNNELS                                ║
                 ╠════════════════════════════════════════════════════════╣
-                ║   Kadim Taşı ele geçir                                 ║
-                ║   Gölge Canavarlarıyla yüzleş                          ║
+                ║   Seize the Access Key from Chrome Guards              ║
                 ╠════════════════════════════════════════════════════════╣
-                ║ 5. 🌀 BOŞLUK DİYARI KAPISI                            ║
+                ║ 5. 🔐 CORP VAULT                                       ║
                 ╠════════════════════════════════════════════════════════╣
-                ║   Void Lord ile son savaş                              ║
-                ║   Aetheria'nın kaderini belirle                        ║
+                ║   Defeat the Overseer and steal the Core Cipher        ║
                 ╠════════════════════════════════════════════════════════╣
-                ║ [Q] ÇIKIŞ YAP                                          ║
+                ║ 6. 💾 SAVE RUN                                         ║
+                ║ [Q] DISCONNECT                                         ║
                 ╚════════════════════════════════════════════════════════╝
                 """);
 
-        System.out.print("\nSeçiminiz: ");
+        System.out.print("\nSelect destination: ");
         return scanner.nextLine().toLowerCase();
     }
 
@@ -54,40 +49,33 @@ public class GameUI {
         System.out.println("""
                 
                 ╔══════════════════════════════════════════════════════════╗
-                ║                 KARAKTER SEÇME MENÜSÜ                    ║
+                ║                 CHOOSE YOUR OPERATIVE                    ║
                 ╚══════════════════════════════════════════════════════════╝
                 
-                Bir zamanlar Aetheria adlı kadim topraklarda, dört kahraman,
-                dünyanın kaderini değiştirecek bir yolculuğa çıkmaya ant içmişti.
-
                 ╔════════════════════════════════════════════════════════╗
-                ║                     [S] SAVAŞÇI                        ║
+                ║                     [S] ENFORCER                       ║
                 ╠════════════════════════════════════════════════════════╣
-                ║  Sağlık: 100  |  Savunma: 15  |  Saldırı: 25           ║
-                ║  • Demir zırhı ve devasa baltasıyla güçlü              ║
-                ║  • Savaş meydanında yankılanan öfkeli kükreyiş         ║
+                ║  Health: 100 | Defense: 15 | Attack: 25                 ║
+                ║  Armored tank built to survive direct assaults         ║
                 ╠════════════════════════════════════════════════════════╣
-                ║                    [A] SUİKASTÇI                       ║
+                ║                       [A] GHOST                        ║
                 ╠════════════════════════════════════════════════════════╣
-                ║  Sağlık: 80   |  Savunma: 8   |  Saldırı: 35           ║
-                ║  • Gölgelerin ustası, hızlı ve sessiz                  ║
-                ║  • Dagger'ları ile ölümcül darbeler                    ║
+                ║  Health: 80  | Defense: 8  | Attack: 35                 ║
+                ║  Stealth specialist with lethal precision              ║
                 ╠════════════════════════════════════════════════════════╣
-                ║                     [B] BÜYÜCÜ                         ║
+                ║                    [B] NETRUNNER                       ║
                 ╠════════════════════════════════════════════════════════╣
-                ║  Sağlık: 65   |  Savunma: 5   |  Saldırı: 40           ║
-                ║  • Kadim büyülerin ustası                              ║
-                ║  • Ateş fırtınaları ve buz büyüleri                    ║
+                ║  Health: 65  | Defense: 5  | Attack: 40                 ║
+                ║  Hacker who weaponizes hostile systems                 ║
                 ╠════════════════════════════════════════════════════════╣
-                ║                     [H] ŞİFACI                         ║
+                ║                       [H] MEDIC                        ║
                 ╠════════════════════════════════════════════════════════╣
-                ║  Sağlık: 120  |  Savunma: 20  |  Saldırı: 20           ║
-                ║  • Kutsal ışığın savaşçısı                             ║
-                ║  • İyileştirme ve koruma büyüleri                      ║
+                ║  Health: 120 | Defense: 20 | Attack: 20                 ║
+                ║  Combat surgeon with reinforced field gear             ║
                 ╚════════════════════════════════════════════════════════╝
                 """);
 
-        System.out.print("\nKarakterini seç (S/A/B/H): ");
+        System.out.print("\nChoose your role (S/A/B/H): ");
         return scanner.nextLine().toLowerCase();
     }
 
@@ -95,10 +83,10 @@ public class GameUI {
         System.out.println("""
                 
                 ╔══════════════════════════════════════════════════════════╗
-                ║           YÜCE AETHERIA TOPRAKLARINA HOŞGELDİN           ║
+                ║              REALM QUEST: NEO-CIRCUIT HEIST              ║
                 ╚══════════════════════════════════════════════════════════╝
                 """);
-        System.out.print("\nKahramanın adını gir: ");
+        System.out.print("\nEnter your operative codename: ");
         return scanner.nextLine();
     }
 

@@ -1,39 +1,37 @@
-# Text-Based Adventure Game
+# Realm Quest
 
-This project is a text-based adventure game developed in Java. Players can choose different characters, fight enemies, collect items, and try to save the world of Aetheria.
+Realm Quest is a Java console adventure set in Neo-Circuit, a neon megacity controlled by the Helix Corporation. Choose an operative, collect the tools needed to breach the Corp Vault, defeat the Overseer, steal the Core Cipher, and escape before the city locks down.
 
 ## Features
 
-- 4 different character classes (Warrior, Assassin, Mage, Healer)
-- 5 different locations (Safe House, Ghua Market, Shadow Forest, Dark Caverns, Void Realm Portal)
-- 3 different enemy types (Void Minion, Shadow Beast, Void Lord)
-- Weapon and armor system
-- Money system
-- Rare item collection system
-- Health regeneration system
-- Game save/load system
+- Four playable roles: Enforcer, Ghost, Netrunner, and Medic
+- Five locations across Neo-Circuit, from a hidden Safehouse to the Corp Vault
+- Turn-based encounters with Street Drones, Chrome Guards, and the Overseer
+- Cyberpunk weapons and armor augments purchased with credits
+- Mission-item progression through the Data Crystal and Access Key
+- Health recovery, character statistics, inventory, and save/load systems
 
 ## Requirements
 
-- Java 17 or higher
+- Java 17 or later
 
 ## Build and run
 
-1. Clone the project:
+Clone the repository:
 
 ```bash
-git clone https://github.com/Erwinya/Simple-Text-Based-Adventure-Engine.git
-cd Simple-Text-Based-Adventure-Engine
+git clone https://github.com/Erwinya/realm-quest.git
+cd realm-quest
 ```
 
-2. Compile and run (Linux/macOS/Git Bash):
+On Linux, macOS, or Git Bash:
 
 ```bash
 chmod +x build.sh
 ./build.sh
 ```
 
-Or manually:
+To compile manually:
 
 ```bash
 mkdir -p bin
@@ -42,34 +40,42 @@ javac -d bin @sources.txt
 java -cp bin com.halukkilincer.adventure.launcher.Main
 ```
 
-On Windows (PowerShell), from the project root:
+On Windows PowerShell:
 
 ```powershell
 New-Item -ItemType Directory -Force bin | Out-Null
-Get-ChildItem -Recurse src -Filter *.java | Where-Object { $_.Name -notlike '*Test.java' } | ForEach-Object { $_.FullName } | Set-Content sources.txt
-javac -d bin @sources.txt
+Get-ChildItem -Recurse src -Filter *.java |
+  Where-Object { $_.Name -notlike '*Test.java' } |
+  ForEach-Object { $_.FullName } |
+  Set-Content sources.txt
+javac -d bin "@sources.txt"
 java -cp bin com.halukkilincer.adventure.launcher.Main
 ```
+
+## How to play
+
+1. Enter an operative codename and select a role with `S`, `A`, `B`, or `H`.
+2. Visit the Data District and Undercity Tunnels to recover both breach assets.
+3. Upgrade equipment at the Black Market and restore health at the Safehouse.
+4. Enter the Corp Vault, defeat the Overseer, and extract the Core Cipher.
+
+Use `F` to engage a hostile group, `A` to attack during combat, and `R` to retreat. Choose option `6` from the run map to save progress.
 
 ## Project structure
 
 ```text
 src/com/halukkilincer/adventure/
-├── characters/    # Character classes
-├── items/         # Item system
-├── launcher/      # Game entry point (Main)
-├── map/           # Game locations
-└── utils/         # Location helpers and game utilities
+├── characters/    # Playable roles and enemies
+├── engine/        # Game lifecycle and main loop
+├── items/         # Inventory and equipment state
+├── launcher/      # Application entry point
+├── map/           # Neo-Circuit locations
+├── ui/            # Console menus
+└── utils/         # Combat, persistence, and shared utilities
 ```
 
-## Game controls
-
-- Use numbers 1-4 to navigate menus
-- Use S, A, B, H keys for character selection
-- During combat:
-  - Press V to attack
-  - Press K to run away
+The project keeps the original package namespace to preserve compatibility with the existing engine.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+This project is licensed under the MIT License. See `LICENSE` for details.

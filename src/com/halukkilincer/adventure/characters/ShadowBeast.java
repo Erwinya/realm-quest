@@ -6,6 +6,6 @@ public class ShadowBeast extends Enemy {
     private static final Random random = new Random();
     
     public ShadowBeast() {
-        super("Shadow Beast", 15, 100, 30);
+        super("Chrome Guard", 15, 100, 30);
     }
 } 

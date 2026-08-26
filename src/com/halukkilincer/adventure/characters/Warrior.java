@@ -11,20 +11,20 @@ public class Warrior extends AbstractCharacter {
 
     @Override
     public String getCharacterType() {
-        return "Savaşçı";
+        return "Enforcer";
     }
 
     @Override
     public String getDescription() {
         return """
                ╔═══════════════════════════════════════════════════════════╗
-               ║              ⚔️  SAVAŞÇI SEÇİLDİ  ⚔️                       ║
-               ║ Savaşçı baltasını sıkıca kavradı. Gücü, sadece           ║
-               ║ kaslarında değil, yüreğindeki sarsılmaz inançtaydı.      ║
+               ║                 ⚔️ ENFORCER SELECTED ⚔️                  ║
+               ║ Heavy plating and shock-frame implants make you the     ║
+               ║ crew's front line when the alarms start screaming.      ║
                ╠══════════════════════════════════════════════════════════╝
-               ║ 🗡️  Saldırı Gücü : %d                                     ║
-               ║ ❤️  Can Değeri   : %d                                    ║
-               ║ 🛡️  Savunma      : %d                                     ║
+               ║ 🗡️  Attack  : %d                                        ║
+               ║ ❤️  Health  : %d                                        ║
+               ║ 🛡️  Defense : %d                                        ║
                ╚══════════════════════════════════════════════════════════╝
                """.formatted(damage, health, defense);
     }

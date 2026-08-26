@@ -41,12 +41,12 @@ public class GameManager {
             System.out.println("""
                     
                     ╔═════════════════════════════════════════════════════════════════════╗
-                    ║                    OYUN SONU                                        ║
+                    ║                    RUN TERMINATED                                   ║
                     ╠═════════════════════════════════════════════════════════════════════╣
-                    ║ Kahramanımız %s maalesef hayatını kaybetti...                      ║
-                    ║ Aetheria'nın kaderi artık karanlığa düşecek.                       ║
+                    ║ Operative %s flatlined during the heist.                           ║
+                    ║ Helix has sealed the district and recovered the breach trail.      ║
                     ║                                                                     ║
-                    ║                   OYUN BİTTİ! ☠️                                    ║
+                    ║                    GAME OVER ☠️                                     ║
                     ╚═════════════════════════════════════════════════════════════════════╝
                     """.formatted(player.getName()));
             gameRunning = false;

@@ -1,6 +1,10 @@
 package com.halukkilincer.adventure.utils;
 
 import com.halukkilincer.adventure.characters.AbstractCharacter;
+import com.halukkilincer.adventure.characters.Assassin;
+import com.halukkilincer.adventure.characters.Healer;
+import com.halukkilincer.adventure.characters.Mage;
+import com.halukkilincer.adventure.characters.Warrior;
 import java.io.*;
 import java.util.Properties;
 
@@ -15,6 +19,7 @@ public class GameSaveManager {
         try (FileOutputStream out = new FileOutputStream(SAVE_FILE)) {
             // Save player stats
             props.setProperty("player.name", player.getName());
+            props.setProperty("player.type", player.getCharacterType());
             props.setProperty("player.health", String.valueOf(player.getHealth()));
             props.setProperty("player.damage", String.valueOf(player.getDamage()));
             props.setProperty("player.defense", String.valueOf(player.getDefense()));
@@ -34,19 +39,18 @@ public class GameSaveManager {
         }
     }
 
-    public static void loadGame(AbstractCharacter player) {
+    public static AbstractCharacter loadGame() {
         Properties props = new Properties();
         
         try (FileInputStream in = new FileInputStream(SAVE_FILE)) {
             props.load(in);
-            
-            // Load player stats
-            player.setName(props.getProperty("player.name"));
+
+            String playerName = props.getProperty("player.name", "Runner");
+            String playerType = props.getProperty("player.type", "Enforcer");
+            AbstractCharacter player = createCharacter(playerType, playerName);
+
+            // Restore player and inventory state
             player.setHealth(Integer.parseInt(props.getProperty("player.health")));
-            player.setDamage(Integer.parseInt(props.getProperty("player.damage")));
-            player.setDefense(Integer.parseInt(props.getProperty("player.defense")));
-            
-            // Load inventory
             player.getInventory().setMoney(Integer.parseInt(props.getProperty("inventory.money")));
             player.getInventory().setWeaponDamage(Integer.parseInt(props.getProperty("inventory.weaponDamage")));
             player.getInventory().setArmorDefense(Integer.parseInt(props.getProperty("inventory.armorDefense")));
@@ -54,10 +58,20 @@ public class GameSaveManager {
             player.getInventory().setAncientStone(Boolean.parseBoolean(props.getProperty("inventory.ancientStone")));
             
             GameLogger.log("Game loaded successfully for player: " + player.getName());
+            return player;
         } catch (IOException | NumberFormatException e) {
             GameLogger.logError("Failed to load game", e);
             throw new GameException("Failed to load game", e);
         }
+    }
+
+    private static AbstractCharacter createCharacter(String playerType, String playerName) {
+        return switch (playerType.toLowerCase()) {
+            case "ghost" -> new Assassin(playerName);
+            case "netrunner" -> new Mage(playerName);
+            case "medic" -> new Healer(playerName);
+            default -> new Warrior(playerName);
+        };
     }
 
     public static boolean saveExists() {

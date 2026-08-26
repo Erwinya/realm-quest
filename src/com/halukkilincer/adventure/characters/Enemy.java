@@ -91,12 +91,12 @@ public class Enemy implements ICombat {
         
         if (chance < 5) { // %5 şans
             if (random.nextBoolean()) {
-                return "Kadim Taş";
+                return "Access Key";
             } }
 
             if (5>chance && chance < 15) { // %5 şans
                 if (random.nextBoolean()) {
-                    return "Orman Parşömeni";
+                    return "Data Crystal";
                 } }
         
         return null;
