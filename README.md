@@ -52,6 +52,20 @@ javac -d bin "@sources.txt"
 java -cp bin com.halukkilincer.adventure.launcher.Main
 ```
 
+## Clean rebuild
+
+If sources change and the old class list looks stale:
+
+```powershell
+Remove-Item -Recurse -Force bin, sources.txt -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Force bin | Out-Null
+Get-ChildItem -Recurse src -Filter *.java |
+  Where-Object { $_.Name -notlike '*Test.java' } |
+  ForEach-Object { $_.FullName } |
+  Set-Content sources.txt
+javac -d bin "@sources.txt"
+```
+
 ## How to play
 
 1. Enter an operative codename and select a role with `S`, `A`, `B`, or `H`.
@@ -75,6 +89,10 @@ src/com/halukkilincer/adventure/
 ```
 
 The project keeps the original package namespace to preserve compatibility with the existing engine.
+
+## Related project
+
+Fantasy-themed sister console RPG: [adventure-engine](https://github.com/Erwinya/adventure-engine)
 
 ## License
 
