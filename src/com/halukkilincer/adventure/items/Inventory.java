@@ -31,7 +31,7 @@ public class Inventory {
 	}
 
 	public void setDungeonKey(boolean dungeonKey) {
-		this.dungeonKey = dungeonKey;
+		setMissionItem(MissionItem.CORE_CIPHER, dungeonKey);
 	}
 	
 	public boolean isForestScroll() {
@@ -39,7 +39,7 @@ public class Inventory {
 	}
 
 	public void setForestScroll(boolean forestScroll) {
-		this.forestScroll = forestScroll;
+		setMissionItem(MissionItem.DATA_CRYSTAL, forestScroll);
 	}
 
 	public boolean isAncientStone() {
@@ -47,7 +47,7 @@ public class Inventory {
 	}
 
 	public void setAncientStone(boolean ancientStone) {
-		this.ancientStone = ancientStone;
+		setMissionItem(MissionItem.ACCESS_KEY, ancientStone);
 	}
 
 	public int getMoney() {
@@ -61,6 +61,7 @@ public class Inventory {
 	public void addRareItem(String item) {
 		if (item != null && !rareItems.contains(item)) {
 			rareItems.add(item);
+			MissionItem.fromLabel(item).ifPresent(missionItem -> setFlag(missionItem, true));
 			System.out.println("\nMISSION ITEM ACQUIRED: " + item + "!");
 			
 			if (item.equals("Access Key")) {
@@ -75,6 +76,29 @@ public class Inventory {
 
 	public List<String> getRareItems() {
 		return rareItems;
+	}
+
+	public void setMissionItem(MissionItem item, boolean owned) {
+		if (item == null) {
+			return;
+		}
+
+		setFlag(item, owned);
+		if (owned) {
+			if (!rareItems.contains(item.getLabel())) {
+				rareItems.add(item.getLabel());
+			}
+		} else {
+			rareItems.remove(item.getLabel());
+		}
+	}
+
+	private void setFlag(MissionItem item, boolean owned) {
+		switch (item) {
+			case ACCESS_KEY -> ancientStone = owned;
+			case DATA_CRYSTAL -> forestScroll = owned;
+			case CORE_CIPHER -> dungeonKey = owned;
+		}
 	}
 
 	public int getWeaponDamage() {
