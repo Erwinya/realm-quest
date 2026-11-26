@@ -12,7 +12,7 @@ $sourceFiles = @(
         ForEach-Object { $_.FullName }
 )
 
-& javac -d $outputDirectory @sourceFiles
+& javac -encoding UTF-8 -d $outputDirectory @sourceFiles
 if ($LASTEXITCODE -ne 0) {
     throw "Compilation failed with exit code $LASTEXITCODE"
 }
