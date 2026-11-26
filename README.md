@@ -45,11 +45,21 @@ On Windows PowerShell:
 ```powershell
 New-Item -ItemType Directory -Force bin | Out-Null
 Get-ChildItem -Recurse src -Filter *.java |
-  Where-Object { $_.Name -notlike '*Test.java' } |
   ForEach-Object { $_.FullName } |
   Set-Content sources.txt
 javac -d bin "@sources.txt"
 java -cp bin com.halukkilincer.adventure.launcher.Main
+```
+
+## Test
+
+The test script compiles production and test sources with `javac`, then runs the
+assertion-based tests with `java -ea`. No Maven or external test framework is
+required.
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\test.ps1
 ```
 
 ## Clean rebuild
@@ -60,7 +70,6 @@ If sources change and the old class list looks stale:
 Remove-Item -Recurse -Force bin, sources.txt -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force bin | Out-Null
 Get-ChildItem -Recurse src -Filter *.java |
-  Where-Object { $_.Name -notlike '*Test.java' } |
   ForEach-Object { $_.FullName } |
   Set-Content sources.txt
 javac -d bin "@sources.txt"

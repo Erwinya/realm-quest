@@ -29,8 +29,10 @@ public class Game implements AutoCloseable {
 		if (GameSaveManager.saveExists()) {
 			System.out.println("\nA saved run was found. Load it? (Y/N)");
 			if (scanner.nextLine().equalsIgnoreCase("Y")) {
-				loadGame();
-				return;
+				if (loadGame()) {
+					return;
+				}
+				System.out.println("\nStarting a new run instead.");
 			}
 		}
 
@@ -120,14 +122,15 @@ public class Game implements AutoCloseable {
 		}
 	}
 
-	private void loadGame() {
+	private boolean loadGame() {
 		try {
 			player = GameSaveManager.loadGame();
 			System.out.println("\n✨ Run loaded successfully!");
+			return true;
 		} catch (Exception e) {
 			System.out.println("\n❌ Could not load the run: " + e.getMessage());
 			GameLogger.logError("Failed to load game", e);
-			isRunning = false;
+			return false;
 		}
 	}
 
